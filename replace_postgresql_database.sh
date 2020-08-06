@@ -1,5 +1,7 @@
 #!/bin/bash
-
+#@author: Thirumal
+#@e-mail: m.thirumal@hotmail.com
+#@mobile: +91-8973-697-871
 ################
 # Replace the database
 ###Get the input from user
@@ -18,6 +20,7 @@ read databaseToDelete;
 
 echo "Enter the new database name"
 read databaseToCreate;
+
 ## Copy the database to file
 sudo -u postgres pg_dump $copyDatabase > $copyDatabaseFile
 echo "Database is dumped to " $copyDatabaseFile
