@@ -26,6 +26,8 @@ sudo -u postgres pg_dump $copyDatabase > $copyDatabaseFile
 echo "Database is dumped to " $copyDatabaseFile
 ## Delete the database
 echo "Closing connection"
+psql -U postgres "REVOKE CONNECT ON DATABASE $databaseToDelete FROM public"
+
 psql -U postgres -d $databaseToDelete -c "select pg_terminate_backend(pid) from pg_stat_activity where datname ='$databaseToDelete'"
 
 sudo -u postgres dropdb $databaseToDelete;
