@@ -22,7 +22,7 @@ read databaseToCreate;
 sudo -u postgres pg_dump $copyDatabase > $copyDatabaseFile
 echo "Database is dumped to " $copyDatabaseFile
 ## Delete the database
-queryToCloseConnection = "select pg_terminate_backend(procpid) from pg_stat_activity where datname =" $databaseToDelete
+queryToCloseConnection="select pg_terminate_backend(procpid) from pg_stat_activity where datname =" $databaseToDelete
 psql -U postgres -d $databaseToDelete -c $queryToCloseConnection
 
 sudo -u postgres dropdb $databaseToDelete;
