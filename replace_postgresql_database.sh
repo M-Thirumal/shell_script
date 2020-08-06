@@ -9,7 +9,7 @@ if [ "$(whoami)" != "root" ]; then
         echo "ERROR : Run script as Root (root !!) please"
         exit 1
 fi
-echo "Enter the copy database name: "
+echo "Enter the copy database name:"
 read copyDatabase
 currentDateTime=`date +"%Y-%m-%dT%T"`
 copyDatabaseFile="$copyDatabase-$currentDateTime.sql"
@@ -25,9 +25,8 @@ read databaseToCreate;
 sudo -u postgres pg_dump $copyDatabase > $copyDatabaseFile
 echo "Database is dumped to " $copyDatabaseFile
 ## Delete the database
-queryToCloseConnection="select pg_terminate_backend(procpid) from pg_stat_activity where datname =$databaseToDelete" 
-echo "Closing connection " $queryToCloseConnection
-psql -U postgres -d $databaseToDelete -c $queryToCloseConnection
+echo "Closing connection"
+psql -U postgres -d $databaseToDelete -c "select pg_terminate_backend(procpid) from pg_stat_activity where datname =$databaseToDelete"
 
 sudo -u postgres dropdb $databaseToDelete;
 echo $databaseToDelete " is deleted"
