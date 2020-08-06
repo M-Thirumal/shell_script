@@ -7,11 +7,11 @@ if [ "$(whoami)" != "root" ]; then
         echo "ERROR : Run script as Root (sudo !!) please"
         exit 1
 fi
-sudo -u postgres
+sudo su postgres
 echo "Enter the copy database name: "
 read copyDatabase
 currentDateTime=`date +"%Y-%m-%dT%T"`
-copyDatabaseFile="$copyDatabase_$currentDateTime.sql"
+copyDatabaseFile="$copyDatabase-$currentDateTime.sql"
 echo "Database will be copied to " $copyDatabaseFile
 
 echo "Enter the database name to delete"
