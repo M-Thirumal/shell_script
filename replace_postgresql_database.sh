@@ -3,6 +3,10 @@
 ################
 # Replace the database
 ###Get the input from user
+if [ "$(whoami)" != "root" ]; then
+        echo "ERROR : Run script as Root (sudo !!) please"
+        exit 1
+fi
 sudo -u postgres
 echo "Enter the copy database name: "
 read copyDatabase
