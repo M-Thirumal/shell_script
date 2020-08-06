@@ -3,11 +3,10 @@
 ################
 # Replace the database
 ###Get the input from user
-if [ "$(whoami)" != "root" ]; then
-        echo "ERROR : Run script as Root (sudo !!) please"
+if [ "$(whoami)" != "postgres" ]; then
+        echo "ERROR : Run script as postgres (postgres !!) please"
         exit 1
 fi
-sudo su postgres
 echo "Enter the copy database name: "
 read copyDatabase
 currentDateTime=`date +"%Y-%m-%dT%T"`
